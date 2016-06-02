@@ -1,0 +1,32 @@
+{
+  "header":{
+    "userName" : "Andres Villagra de la Fuente",
+    "company" : "SOT",
+    "date" : "31/04/2016"
+  },
+  "activities":[
+    {
+      "type" : "t/f",
+      "questions":[
+        {
+          "text" : "When was the french revoluction?",
+          "answer" : [
+            { 
+              "text" : "1981",
+              "result" : false
+            },
+            {
+              "text" : "1789",
+              "result" : true
+            },
+            {
+              "text" : "2001",
+              "result" : false
+            }
+          ]
+        }
+      ]
+    }
+    
+  ]
+}
