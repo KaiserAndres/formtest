@@ -1,15 +1,18 @@
 import datetime
 
-class file:
-  def __init__(self, metadata, header):
+class File:
+  def __init__(self, metadata= None, header = None):
     self.metadata = metadata
     self.header = header
     self.data = []
 
-  def setData(self, element):
+  def linkData(self, element):
     self.data.append(element)
 
-class metaData:
+  def unlinkData(self, element):
+    self.data.remove(element)
+
+class MetaData:
   def __init__(self, userID, language, creationDate, lastChangeDate, fileID):
     self.userID = userID
     self.language = language
@@ -32,10 +35,10 @@ class metaData:
   def setFileID(self, newFileID):
     self.fileID = newFileID
 
-class data:
+class Data:
   pass
 
-class textBlock(data):
+class TextBlock(Data):
   def __init__(self, baseText):
     self.textBody = baseText
     self.subActivities = []
@@ -46,5 +49,5 @@ class textBlock(data):
   def linkActivity(self, activity):
     self.subActivities.append(activity)
 
-class activity(data):
+class Activity(Data):
   pass
