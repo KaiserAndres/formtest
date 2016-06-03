@@ -11,15 +11,10 @@ This file generates an output of the same name as the original file name with
 the "*.tex" extention marking that it was processed and is ready to be rendered
 '''
 
-'''
-@param root: root object containing the data structure for the activity group
 
-@returns: JSON string containing the data from the object
-'''
-def encode(root):
-  dictObject = root.giveDict()
-  return json.dumps(dictObject)
-
+#------------------------------------------------------------------------------
+#       loader functions
+#------------------------------------------------------------------------------
 def makeTrueOrFalse(block):
   activity = activityHandle.TrueOrFalse(block["text"])
   for answer in block["answer"]:
@@ -56,11 +51,23 @@ def makeTextBlock(block):
   return activity
 
 loader = {
+  # To add extra activity types register the loader function here.
   "t/f" : makeTrueOrFalse,
   "answerQuestion" : makeAnswerQuestion,
   "orderWords" : makeOrderWords,
   "textBlock" : makeTextBlock
 }
+
+#------------------------------------------------------------------------------
+
+'''
+@param root: root object containing the data structure for the activity group
+
+@returns: JSON string containing the data from the object
+'''
+def encode(root):
+  dictObject = root.giveDict()
+  return json.dumps(dictObject)
 
 '''
 From a JSON string generates an object tree containing the data
@@ -90,6 +97,8 @@ def decode(JSON):
   for element in JSON["data"]:
     root.linkData(loader[element["type"]](element))
   return root
+
+#------------------------------------------------------------------------------
 
 def main():
   print("this shouldn't be ran")

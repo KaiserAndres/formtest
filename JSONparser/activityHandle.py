@@ -1,5 +1,9 @@
 import datetime
 
+#------------------------------------------------------------------------------
+# Root class
+#------------------------------------------------------------------------------
+
 class File:
   def __init__(self, metadata= None, header = None):
     self.metadata = metadata
@@ -26,6 +30,10 @@ class File:
     for element in self.data:
       dictionary["data"].append(element.giveDict())
     return dictionary
+
+#------------------------------------------------------------------------------
+# Central class group
+#------------------------------------------------------------------------------
 
 class MetaData:
   def __init__(self, userID = None, language = None, creationDate = None,
@@ -100,6 +108,11 @@ class Header:
 class Data:
   pass
 
+#------------------------------------------------------------------------------
+# Special block classes
+#------------------------------------------------------------------------------
+
+
 class TextBlock(Data):
   def __init__(self, baseText):
     self.textBody      = baseText
@@ -122,6 +135,11 @@ class TextBlock(Data):
     for element in self.subActivities:
       dictionary["subactivities"].append(element.giveDict)
     return dictionary
+
+#------------------------------------------------------------------------------
+# Activity class group
+#------------------------------------------------------------------------------
+
 
 class Activity(Data):
   pass
@@ -214,9 +232,3 @@ class OrderingWord:
     dictionary = {}
     dictionary["text"] = self.text
     return dictionary
-
-
-
-
-
-
