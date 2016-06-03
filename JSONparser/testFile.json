@@ -1,32 +1,37 @@
 {
-  "header":{
-    "userName" : "Andres Villagra de la Fuente",
-    "company" : "SOT",
-    "date" : "31/04/2016"
+  "metadata":{
+    "userID" : 0,
+    "language" : "en",
+    "creationDate" : null,
+    "lastChangeDate" : null,
+    "fileID" : 0
   },
-  "activities":[
+  "header":{
+    "organisation" : "SOT",
+    "hasHeader" : false,
+    "hasStudentName" : false,
+    "hasTeacherName" : false,
+    "hasFillableName" : false,
+    "hasFillableDate" : false
+  },
+  "data":[
     {
       "type" : "t/f",
-      "questions":[
+      "text" : "When was the french revoluction?",
+      "answer" : [
+        { 
+          "text" : "1981",
+          "correct" : false
+        },
         {
-          "text" : "When was the french revoluction?",
-          "answer" : [
-            { 
-              "text" : "1981",
-              "result" : false
-            },
-            {
-              "text" : "1789",
-              "result" : true
-            },
-            {
-              "text" : "2001",
-              "result" : false
-            }
-          ]
+          "text" : "1789",
+          "correct" : true
+        },
+        {
+          "text" : "2001",
+          "correct" : false
         }
       ]
     }
-    
   ]
 }

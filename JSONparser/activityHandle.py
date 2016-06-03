@@ -9,7 +9,7 @@ class File:
   def linkHeader(self, header):
     self.header = header
 
-  def linkMetadata(self, metadata):
+  def linkMetaData(self, metadata):
     self.metadata = metadata
 
   def linkData(self, element):
@@ -45,7 +45,7 @@ class MetaData:
   def updateLastChangeDate(self):
     self.setLastChange()
 
-class header:
+class Header:
   def __init__(self, organisation = None, hasHeader = None,
                hasStudentName = None, hasTeacherName = None,
                hasFillableDate = None):
