@@ -17,7 +17,8 @@ the "*.tex" extention marking that it was processed and is ready to be rendered
 @returns: JSON string containing the data from the object
 '''
 def encode(root):
-  pass
+  dictObject = root.giveDict()
+  return json.dumps(dictObject)
 
 def makeTrueOrFalse(block):
   activity = activityHandle.TrueOrFalse(block["text"])
