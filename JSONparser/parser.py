@@ -19,7 +19,6 @@ the "*.tex" extention marking that it was processed and is ready to be rendered
 def encode(root):
   pass
 
-
 def makeTrueOrFalse(block):
   activity = activityHandle.TrueOrFalse(block["text"])
   for answer in block["answer"]:

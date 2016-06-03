@@ -18,6 +18,15 @@ class File:
   def unlinkData(self, element):
     self.data.remove(element)
 
+  def giveDict(self):
+    dictionary = {}
+    dictionary["metadata"] = self.metadata.giveDict()
+    dictionary["header"] = self.header.giveDict()
+    dictionary["data"] = []
+    for element in self.data:
+      dictionary["data"].append(element.giveDict())
+    return dictionary
+
 class MetaData:
   def __init__(self, userID = None, language = None, creationDate = None,
                lastChangeDate = None, fileID = None):
@@ -45,6 +54,15 @@ class MetaData:
   def updateLastChangeDate(self):
     self.setLastChange()
 
+  def giveDict(self):
+    dictionary = {}
+    dictionary["userID"]         = self.userID
+    dictionary["language"]       = self.language
+    dictionary["creationDate"]   = self.creationDate
+    dictionary["lastChangeDate"] = self.lastChangeDate
+    dictionary["fileID"]         = self.fileID
+    return dictionary
+
 class Header:
   def __init__(self, organisation = None, hasHeader = None,
                hasStudentName = None, hasTeacherName = None,
@@ -70,6 +88,15 @@ class Header:
   def setHasFillableDate(self, hasFillableDate):
     self.hasFillableDate = hasFillableDate
 
+  def giveDict(self):
+    dictionary = {}
+    dictionary["organisation"]    = self.organisation
+    dictionary["hasHeader"]       = self.hasHeader
+    dictionary["hasStudentName"]  = self.hasStudentName
+    dictionary["hasTeacherName"]  = self.hasTeacherName
+    dictionary["hasFillableDate"] = self.hasFillableDate
+    return dictionary
+
 class Data:
   pass
 
@@ -87,6 +114,15 @@ class TextBlock(Data):
   def unlinkSubactivity(self, activity):
     self.subActivities.remove(activity)
 
+  def giveDict(self):
+    dictionary = {}
+    dictionary["type"]          = "textBlock"
+    dictionary["textBody"]      = self.textBody
+    dictionary["subactivities"] = []
+    for element in self.subActivities:
+      dictionary["subactivities"].append(element.giveDict)
+    return dictionary
+
 class Activity(Data):
   pass
 
@@ -101,6 +137,15 @@ class TrueOrFalse(Activity):
   def unlinkAnswer(self, answer):
     self.answers.remove(answer)
 
+  def giveDict(self):
+    dictionary = {}
+    dictionary["type"] = "t/f"
+    dictionary["text"] = self.text
+    dictionary["answer"] = []
+    for element in self.answers:
+      dictionary["answer"].append(element.giveDict())
+    return dictionary
+
 class TFanswer:
   def __init__(self, text = None, correct = False):
     self.text    = text
@@ -112,6 +157,12 @@ class TFanswer:
   def setCorrect(self, correct):
     self.correct = correct
 
+  def giveDict(self):
+    dictionary = {}
+    dictionary["text"]    = self.text
+    dictionary["correct"] = self.correct
+    return dictionary
+
 class AnswerQuestion(Activity):
   def __init__(self, questionText = None, answerLines = None):
     self.questionText = questionText
@@ -122,6 +173,13 @@ class AnswerQuestion(Activity):
 
   def setNumberOfLines(self, numberLines):
     self.answerLines = numberLines
+
+  def giveDict(self):
+    dictionary = {}
+    dictionary["type"]         = "answerQuestion"
+    dictionary["questionText"] = self.questionText
+    dictionary["answerLines"]  = self.answerLines
+    return dictionary
 
 class OrderWords(Activity):
   def __init__(self, autoScramble = None):
@@ -137,9 +195,28 @@ class OrderWords(Activity):
   def setAutoScramble(self, scramble):
     self.autoScramble = scramble
 
+  def giveDict(self):
+    dictionary = {}
+    dictionary["type"]     = "orderWords"
+    dictionary["sentence"] = []
+    for element in self.sentence:
+      dictionary["sentence"].append(element.giveDict())
+    dictionary["autoScramble"] = self.autoScramble
+
 class OrderingWord:
   def __init__(self, text = None):
     self.text = text
 
   def setText(self, text):
     self.text = text
+
+  def giveDict(self):
+    dictionary = {}
+    dictionary["text"] = self.text
+    return dictionary
+
+
+
+
+
+
