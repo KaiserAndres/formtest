@@ -33,8 +33,8 @@ class MetaData:
   def setLanguage(self, newLanguage):
     self.language = newLanguage
 
-  def setCreationDate(self):
-    self.creationDate = datetime.datetime.now()
+  def setCreationDate(self, creationDate):
+    self.creationDate = creationDate
 
   def setLastChange(self):
     self.lastChangeDate = datetime.datetime.now()
@@ -95,11 +95,51 @@ class TrueOrFalse(Activity):
     self.text    = text
     self.answers = []
 
+  def linkAnswer(self, answer):
+    self.answers.append(answer)
 
+  def unlinkAnswer(self, answer):
+    self.answers.remove(answer)
 
+class TFanswer:
+  def __init__(self, text = None, correct = False):
+    self.text    = text
+    self.correct = correct
 
+  def setText(self, text):
+    self.text = text
 
+  def setCorrect(self, correct):
+    self.correct = correct
 
+class AnswerQuestion(Activity):
+  def __init__(self, questionText = None, answerLines = None):
+    self.questionText = questionText
+    self.answerLines  = answerLines
 
+  def setQuestionText(self, text):
+    self.questionText = text
 
+  def setNumberOfLines(self, numberLines):
+    self.answerLines = numberLines
 
+class OrderWords(Activity):
+  def __init__(self, autoScramble = None):
+    self.sentence     = []
+    self.autoScramble = autoScramble
+
+  def linkWord(self, word):
+    self.sentence.append(word)
+
+  def unlinkWord(self, word):
+    self.sentence.remove(word)
+
+  def setAutoScramble(self, scramble):
+    self.autoScramble = scramble
+
+class OrderingWord:
+  def __init__(self, text = None):
+    self.text = text
+
+  def setText(self, text):
+    self.text = text
