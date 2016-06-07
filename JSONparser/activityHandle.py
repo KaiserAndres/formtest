@@ -5,6 +5,33 @@ import datetime
 #------------------------------------------------------------------------------
 
 class File:
+  '''
+This is the 'root' class, which defines the main point of access for the entire
+datastructure.
+
+This class is responsible for holding the data of each document as well as
+relative amount of metadata respective for said file and it's owner (in case it
+happens to be lost from the database, although this should never happen [watch
+it happen in like 5 minutes])
+
+Methods:
+
+linkHeader (header:Header):
+  Adds the header pointer to the structure.
+
+linkMetaData (metadata:Metadata):
+  Adds the metdata pointer to the structure.
+
+linkData (data:Data):
+  Appends a data pointer to the structure.
+
+unlinkData (data:Data):
+  Removes the data opinter from the structure.
+
+giveDict (void):
+  Generates a dictionary object with the object structure. Used to generate
+  the JSON file
+  '''
   def __init__(self, metadata= None, header = None):
     self.metadata = metadata
     self.header = header
