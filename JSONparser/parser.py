@@ -81,13 +81,13 @@ def decode(JSON):
       JSON ["header"] ["hasHeader"],
       JSON ["header"] ["hasStudentName"],
       JSON ["header"] ["hasTeacherName"],
-      JSON ["header"] ["hasFillableDate"]
+      JSON ["header"] ["hasFillableDate"],
+      JSON ["header"] ["language"]
       )
     )
   root.linkMetaData(
     activityHandle.MetaData(
       JSON ["metadata"] ["userID"],
-      JSON ["metadata"] ["language"],
       JSON ["metadata"] ["creationDate"],
       JSON ["metadata"] ["lastChangeDate"],
       JSON ["metadata"] ["fileID"]

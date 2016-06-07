@@ -16,21 +16,34 @@ it happen in like 5 minutes])
 
 Methods:
 
-linkHeader (header:Header):
-  Adds the header pointer to the structure.
+  linkHeader (header:Header):
+    Adds the header pointer to the structure.
 
-linkMetaData (metadata:Metadata):
-  Adds the metdata pointer to the structure.
+  linkMetaData (metadata:Metadata):
+    Adds the metdata pointer to the structure.
 
-linkData (data:Data):
-  Appends a data pointer to the structure.
+  linkData (data:Data):
+    Appends a data pointer to the structure.
 
-unlinkData (data:Data):
-  Removes the data opinter from the structure.
+  unlinkData (data:Data):
+    Removes the data opinter from the structure.
 
-giveDict (void):
-  Generates a dictionary object with the object structure. Used to generate
-  the JSON file
+  giveDict (void):
+    Generates a dictionary object with the object structure. Used to generate
+    the JSON file
+
+Atributes:
+
+  metadata (Metadata):
+    This object holds information used for processing the File, but is not
+    rendered.
+
+  header (Header):
+    This object holds data used to determin the formatting for the render of
+    the file.
+  
+  data [Data]:
+    This list contains the data that is rendered.
   '''
   def __init__(self, metadata= None, header = None):
     self.metadata = metadata
@@ -63,19 +76,20 @@ giveDict (void):
 #------------------------------------------------------------------------------
 
 class MetaData:
-  def __init__(self, userID = None, language = None, creationDate = None,
+  '''
+This object holds data that is used for internal managment of the file, this
+should not contin data used for the rendering aside from language, which is
+also used for the editor's language and is set here to avoid repetition.
+  '''
+  def __init__(self, userID = None, creationDate = None,
                lastChangeDate = None, fileID = None):
     self.userID         = userID
-    self.language       = language
     self.creationDate   = creationDate
     self.lastChangeDate = lastChangeDate
     self.fileID         = fileID
 
   def setUserID(self, newID):
     self.userID = newID
-
-  def setLanguage(self, newLanguage):
-    self.language = newLanguage
 
   def setCreationDate(self, creationDate):
     self.creationDate = creationDate
@@ -92,21 +106,24 @@ class MetaData:
   def giveDict(self):
     dictionary = {}
     dictionary["userID"]         = self.userID
-    dictionary["language"]       = self.language
     dictionary["creationDate"]   = self.creationDate
     dictionary["lastChangeDate"] = self.lastChangeDate
     dictionary["fileID"]         = self.fileID
     return dictionary
 
 class Header:
-  def __init__(self, organisation = None, hasHeader = None,
-               hasStudentName = None, hasTeacherName = None,
+  def __init__(self, language  = None, organisation   = None, hasHeader = None,
+               hasStudentName  = None, hasTeacherName = None,
                hasFillableDate = None):
+    self.language         = language
     self.organisation     = organisation
     self.hasHeader        = hasHeader
     self.hasStudentName   = hasStudentName
     self.hasTeacherName   = hasTeacherName
     self.hasFillableDate  = hasFillableDate
+
+  def setLanguage(self, newLanguage):
+    self.language = newLanguage
 
   def setOrganisation(self, organisation):
     self.organisation = organisation
@@ -125,6 +142,7 @@ class Header:
 
   def giveDict(self):
     dictionary = {}
+    dictionary["language"]        = self.language
     dictionary["organisation"]    = self.organisation
     dictionary["hasHeader"]       = self.hasHeader
     dictionary["hasStudentName"]  = self.hasStudentName
