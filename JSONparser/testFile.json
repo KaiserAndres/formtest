@@ -1,12 +1,12 @@
 {
   "metadata":{
     "userID" : 0,
-    "language" : "en",
     "creationDate" : null,
     "lastChangeDate" : null,
     "fileID" : 0
   },
   "header":{
+    "language" : "en",
     "organisation" : "SOT",
     "hasHeader" : false,
     "hasStudentName" : false,
